@@ -2,10 +2,7 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 
 class UserService {
-  constructor() {
-    // this.pool = pool;
-    // this.pool.on('error', (error) => console.log(error));
-  }
+  constructor() {}
 
   async create(data) {
     const newUser = await models.User.create(data);
@@ -13,7 +10,7 @@ class UserService {
   }
 
   async find() {
-    const response = await models.User.findAll();
+    const response = await models.User.findAll({ include: ['customer'] });
     return response;
   }
 
